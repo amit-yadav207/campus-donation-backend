@@ -1,0 +1,99 @@
+# Node.js dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Build output for React (Frontend)
+build/
+/dist/
+/*.log
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Native
+# Uncomment if you are working with React Native
+# /ios/Pods
+# /android/build
+# /node_modules
+
+# Frontend IDE settings
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Backend (Node.js) specific
+# If you are using a backend framework like Express.js
+npm-debug.log
+.env
+
+# Backend build
+/build/
+/dist/
+
+# Temporary files
+*.swp
+*.swo
+
+# Docker files (optional if using Docker)
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Temporary and session files
+*.bak
+*.tmp
+
+# Jest / Mocha Coverage reports
+/coverage/
+
+# TypeScript (if using TypeScript)
+*.tsbuildinfo
+
+# Next.js (if using Next.js)
+.next/
+/out/
+
+# Svelte (if using Svelte)
+.svelte-kit/
+
+# Vercel and Netlify deployments (optional, if deploying on these platforms)
+.vercel/
+.netlify/
+
+# Firebase deployment (optional)
+.firebase/
+
+# Log files
+*.log
+
+# Nginx, Apache, and other web server logs (optional)
+logs/
+
+# Coverage directory created by tools like Jest or Mocha
+coverage/
+
+# MacOS system files (optional)
+.DS_Store
+
+# Windows system files (optional)
+Thumbs.db
+
+# IDE files (optional)
+.idea/
+
+# VS Code files (optional)
+.vscode/
+
+# Cache files (optional)
+.cache/
