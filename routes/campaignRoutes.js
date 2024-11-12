@@ -34,7 +34,7 @@ router.get('/', getAllCampaigns);                 // Get all campaigns
 router.get('/active', getAllActiveCampaigns);      // Get all active campaigns
 router.get('/:id', getCampaignById);              // Get a campaign by ID
 router.post('/create', authMiddleware, createCampaign);  // Create a new campaign (auth required)
-router.put('/:id', authMiddleware, updateCampaign);  // Update a campaign (auth required)
+router.put('/:id/status', authMiddleware, updateCampaign);  // Update a campaign (auth required)
 router.delete('/:id', authMiddleware, deleteCampaign); // Delete a campaign (auth required)
 router.post('/:id/donate', authMiddleware, donateToCampaign); // Donate to a campaign
 router.get('/:id/donor', getAllDonors);            // Get all donors for a specific campaign

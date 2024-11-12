@@ -76,24 +76,75 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const sendEmail = require('../utils/sendEmail'); // Assume you have a utility to send emails
 
+// // Register User
+// exports.registerUser = async (req, res) => {
+//     const { name, email, password ,role} = req.body;
+//     try {
+//         const user = await User.create({ name, email, password,role });
+//         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+//         // Send verification email
+//         const verificationToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+//         const verificationUrl = `${req.protocol}://${req.get('host')}/api/auth/verify/${verificationToken}`;
+       
+//         await sendEmail(email, 'Verify your account', `Please verify your account by clicking this link: ${verificationUrl}`);
+
+//         res.status(201).json({ message: 'User registered. Please verify your account.', token });
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// };
+
+
+
+
+
+
 // Register User
 exports.registerUser = async (req, res) => {
-    const { name, email, password ,role} = req.body;
+    const { name, email, password, role } = req.body;
     try {
-        const user = await User.create({ name, email, password,role });
+        const user = await User.create({ name, email, password, role });
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        // Send verification email
+        // Generate verification token and URL
         const verificationToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-        const verificationUrl = `${req.protocol}://${req.get('host')}/api/auth/verify/${verificationToken}`;
-       
-        await sendEmail(email, 'Verify your account', `Please verify your account by clicking this link: ${verificationUrl}`);
+        const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
+
+        // Send verification email
+        const emailContent = `
+            <p>Hi ${name},</p>
+            <p>Thank you for registering. Please verify your account by clicking the link below:</p>
+            <a href="${verificationUrl}" target="_blank">Verify Your Account</a>
+            <p>Thank you!</p>
+        `;
+
+        await sendEmail(email, 'Verify Your Account', emailContent);
 
         res.status(201).json({ message: 'User registered. Please verify your account.', token });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Login User
 exports.loginUser = async (req, res) => {

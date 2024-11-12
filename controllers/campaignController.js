@@ -68,22 +68,24 @@ exports.getAllActiveCampaigns = async (req, res) => {
 
 // Update a campaign
 exports.updateCampaign = async (req, res) => {
+    console.log("backedb update status :",req.body.status)
     const { id } = req.params;
-    const { title, description, goalAmount, endDate, status } = req.body;
+    const status  = req.body.status;
 
     try {
         const campaign = await Campaign.findById(id);
 
         if (!campaign) {
+            console.log('Campaign not found')
             return res.status(404).json({ message: 'Campaign not found' });
         }
 
-        // Update fields
-        campaign.title = title || campaign.title;
-        campaign.description = description || campaign.description;
-        campaign.goalAmount = goalAmount || campaign.goalAmount;
-        campaign.endDate = endDate || campaign.endDate;
-        campaign.status = status || campaign.status;
+        // // Update fields
+        // campaign.title = title || campaign.title;
+        // campaign.description = description || campaign.description;
+        // campaign.goalAmount = goalAmount || campaign.goalAmount;
+        // campaign.endDate = endDate || campaign.endDate;
+        campaign.status = status ;
 
         await campaign.save();
         res.status(200).json({ message: 'Campaign updated successfully', campaign });
