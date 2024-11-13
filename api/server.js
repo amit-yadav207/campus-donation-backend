@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const connectDB = require('../config/db');
 
 dotenv.config();
 connectDB();
@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(cors());
 
 // Import Routes
-const authRoutes = require('./routes/authRoutes');
-const campaignRoutes = require('./routes/campaignRoutes');
-const userRoutes = require('./routes/userRoutes');
-const analyticsRoutes = require('./routes/analyticsRoutes');
-const donationRoutes = require('./routes/donationRoutes');
+const authRoutes = require('../routes/authRoutes');
+const campaignRoutes = require('../routes/campaignRoutes');
+const userRoutes = require('../routes/userRoutes');
+const analyticsRoutes = require('../routes/analyticsRoutes');
+const donationRoutes = require('../routes/donationRoutes');
 
 // Use Routes
 app.get('/',(req,res)=>{
